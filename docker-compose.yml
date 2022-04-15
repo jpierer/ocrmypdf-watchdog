@@ -1,0 +1,16 @@
+version: "3"
+services:
+  ocrmypdf-watchdog:
+    network_mode: none
+    build: "."
+    restart: always
+    environment:
+      OCRMYPDF_IN: /in
+      OCRMYPDF_OUT: /out
+      WATCHDOG_FREQUENCY: 5
+      WATCHDOG_EXTENSIONS: pdf,jpg,jpeg,tif,tiff,png,gif
+      OCRMYPDF_BINARY: ocrmypdf
+      OCRMYPDF_PARAMETER: -l eng+deu --rotate-pages --deskew --jobs 8 --output-type pdfa
+    volumes:
+      - /Users/jpierer/Documents/Scans/1_ocr:/in
+      - /Users/jpierer/Documents/Scans/2_done:/out
